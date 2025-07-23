@@ -1,0 +1,460 @@
+/* Admin CSS Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f8fafc;
+    color: #334155;
+    line-height: 1.6;
+}
+
+/* Login Screen */
+.login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+}
+
+.login-card {
+    background: white;
+    padding: 3rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    text-align: center;
+}
+
+.login-card h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.login-card h1 i {
+    color: #ef4444;
+    margin-right: 0.5rem;
+}
+
+.login-card p {
+    color: #64748b;
+    margin-bottom: 2rem;
+}
+
+.login-form {
+    margin-bottom: 1rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+.input-group button {
+    padding: 0.875rem 1.5rem;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.input-group button:hover {
+    background: #2563eb;
+}
+
+.error-message {
+    background: #fef2f2;
+    color: #dc2626;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #fecaca;
+    font-size: 0.875rem;
+}
+
+/* Admin Interface */
+.admin-interface {
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+.admin-header {
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.admin-header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.admin-header h1 i {
+    color: #ef4444;
+    margin-right: 0.5rem;
+}
+
+.admin-main {
+    padding: 2rem 0;
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.admin-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid #e2e8f0;
+}
+
+.admin-section h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-section h2 i {
+    color: #ef4444;
+}
+
+/* Opening Hours */
+.opening-hours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.hour-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hour-item label {
+    font-weight: 500;
+    min-width: 100px;
+    color: #475569;
+}
+
+.hour-item input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    transition: border-color 0.2s;
+}
+
+.hour-item input:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+/* Category Filter */
+.category-filter {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid #e2e8f0;
+    background: white;
+    color: #64748b;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    border-color: #cbd5e1;
+}
+
+.filter-btn.active {
+    background: #3b82f6;
+    border-color: #3b82f6;
+    color: white;
+}
+
+/* Menu Table */
+.table-container {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.menu-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.menu-table th {
+    background: #f8fafc;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #475569;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.menu-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.menu-table tr:hover {
+    background: #f8fafc;
+}
+
+.menu-table .category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: #f1f5f9;
+    color: #475569;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.menu-table .price-input {
+    width: 100px;
+    padding: 0.5rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.menu-table .price-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+.menu-table .price-input.changed {
+    border-color: #f59e0b;
+    background: #fffbeb;
+}
+
+/* Buttons */
+.btn-primary {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    background: #2563eb;
+}
+
+.btn-primary:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background: #6b7280;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.btn-secondary:hover {
+    background: #4b5563;
+}
+
+/* Save Section */
+.save-section {
+    text-align: center;
+}
+
+.save-info {
+    margin-top: 1rem;
+    color: #64748b;
+    font-size: 0.875rem;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loading-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f4f6;
+    border-top: 4px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Message Container */
+.message-container {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 9999;
+}
+
+.message {
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #10b981;
+    animation: slideIn 0.3s ease;
+}
+
+.message.error {
+    border-left-color: #ef4444;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 0 1rem;
+    }
+    
+    .admin-section {
+        padding: 1.5rem;
+    }
+    
+    .opening-hours-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hour-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+    
+    .hour-item label {
+        min-width: auto;
+    }
+    
+    .category-filter {
+        gap: 0.25rem;
+    }
+    
+    .filter-btn {
+        font-size: 0.75rem;
+        padding: 0.375rem 0.75rem;
+    }
+    
+    .menu-table {
+        font-size: 0.875rem;
+    }
+    
+    .menu-table th,
+    .menu-table td {
+        padding: 0.75rem 0.5rem;
+    }
+} 

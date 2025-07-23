@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Grillroom Sphinx Utrecht</title>
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-container">
+            <div class="login-card">
+                <h1><i class="fas fa-utensils"></i> Sphinx Admin</h1>
+                <p>Voer het wachtwoord in om verder te gaan</p>
+                
+                <form id="login-form" class="login-form">
+                    <div class="input-group">
+                        <input type="password" id="password" placeholder="Wachtwoord" required>
+                        <button type="submit">
+                            <i class="fas fa-sign-in-alt"></i> Inloggen
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="login-error" class="error-message" style="display: none;">
+                    Onjuist wachtwoord. Probeer opnieuw.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Interface -->
+    <div id="admin-interface" class="admin-interface" style="display: none;">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <h1><i class="fas fa-utensils"></i> Sphinx Admin Panel</h1>
+                <div class="admin-actions">
+                    <button id="logout-btn" class="btn-secondary">
+                        <i class="fas fa-sign-out-alt"></i> Uitloggen
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-container">
+                
+                <!-- Opening Hours Section -->
+                <section class="admin-section">
+                    <h2><i class="fas fa-clock"></i> Openingstijden</h2>
+                    <div class="opening-hours-grid">
+                        <div class="hour-item">
+                            <label>Maandag:</label>
+                            <input type="text" id="monday" placeholder="16:00 - 23:00">
+                        </div>
+                        <div class="hour-item">
+                            <label>Dinsdag:</label>
+                            <input type="text" id="tuesday" placeholder="16:00 - 23:00">
+                        </div>
+                        <div class="hour-item">
+                            <label>Woensdag:</label>
+                            <input type="text" id="wednesday" placeholder="16:00 - 23:00">
+                        </div>
+                        <div class="hour-item">
+                            <label>Donderdag:</label>
+                            <input type="text" id="thursday" placeholder="16:00 - 23:00">
+                        </div>
+                        <div class="hour-item">
+                            <label>Vrijdag:</label>
+                            <input type="text" id="friday" placeholder="16:00 - 23:00">
+                        </div>
+                        <div class="hour-item">
+                            <label>Zaterdag:</label>
+                            <input type="text" id="saturday" placeholder="16:00 - 23:00">
+                        </div>
+                        <div class="hour-item">
+                            <label>Zondag:</label>
+                            <input type="text" id="sunday" placeholder="16:00 - 23:00">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Menu Items Section -->
+                <section class="admin-section">
+                    <h2><i class="fas fa-utensils"></i> Menu Items & Prijzen</h2>
+                    
+                    <!-- Category Filter -->
+                    <div class="category-filter">
+                        <button class="filter-btn active" data-category="all">Alle Items</button>
+                        <button class="filter-btn" data-category="broodjes">Broodjes</button>
+                        <button class="filter-btn" data-category="kapsalon">Kapsalon</button>
+                        <button class="filter-btn" data-category="schotels">Schotels</button>
+                        <button class="filter-btn" data-category="extras">Extra's</button>
+                        <button class="filter-btn" data-category="sauzen">Sauzen</button>
+                        <button class="filter-btn" data-category="dranken">Dranken</button>
+                    </div>
+
+                    <!-- Menu Table -->
+                    <div class="table-container">
+                        <table id="menu-table" class="menu-table">
+                            <thead>
+                                <tr>
+                                    <th>Categorie</th>
+                                    <th>Item Naam</th>
+                                    <th>Huidige Prijs</th>
+                                    <th>Nieuwe Prijs</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Menu items will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Save Section -->
+                <section class="admin-section">
+                    <div class="save-section">
+                        <button id="save-changes-btn" class="btn-primary">
+                            <i class="fas fa-save"></i> Wijzigingen Opslaan
+                        </button>
+                        <p class="save-info">
+                            Let op: Wijzigingen worden automatisch op de website geüpdatet binnen 1-2 minuten.
+                        </p>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p id="loading-text">Wijzigingen opslaan...</p>
+        </div>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div id="message-container" class="message-container"></div>
+
+    <script src="admin.js"></script>
+</body>
+</html> 

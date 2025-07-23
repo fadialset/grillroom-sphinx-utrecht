@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grillroom Sphinx Utrecht - Menu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><i class="fas fa-utensils"></i> Grillroom Sphinx</h1>
+                    <p>Utrecht</p>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="#menu" class="nav-link active">Menukaart</a></li>
+                        <li><a href="#reviews" class="nav-link">Beoordelingen</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                        <li><a href="#colofon" class="nav-link">Colofon</a></li>
+                    </ul>
+                </nav>
+                <div class="header-info">
+                    <div class="address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Biltstraat 51, Utrecht</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>Welkom bij Grillroom Sphinx Utrecht</h2>
+                    <p>Ontdek onze heerlijke selectie van verse broodjes, schotels en meer!</p>
+                </div>
+            </section>
+
+            <!-- Menu Categories Navigation -->
+            <section class="menu-nav" id="menu">
+                <div class="menu-nav-container">
+                    <button class="category-btn active" data-category="all">Alle</button>
+                    <button class="category-btn" data-category="broodjes">Broodjes</button>
+                    <button class="category-btn" data-category="kapsalon">Kapsalon</button>
+                    <button class="category-btn" data-category="schotels">Schotels</button>
+                    <button class="category-btn" data-category="extras">Extra's</button>
+                    <button class="category-btn" data-category="sauzen">Sauzen</button>
+                    <button class="category-btn" data-category="dranken">Dranken</button>
+                </div>
+            </section>
+
+            <!-- Menu Content -->
+            <section class="menu-content">
+                <div id="menu-container" class="menu-container">
+                    <!-- Menu items will be dynamically loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-utensils"></i> Grillroom Sphinx</h3>
+                    <p>Uw favoriete grillroom in Utrecht</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Biltstraat 51</p>
+                        <p>3572AE Utrecht</p>
+                        <p><i class="fas fa-globe"></i> Online Eten Bestellen</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Informatie</h4>
+                    <ul class="footer-links">
+                        <li><a href="#algemene-voorwaarden">Algemene voorwaarden</a></li>
+                        <li><a href="#privacy">Privacy statement</a></li>
+                        <li><a href="#cookies">Cookieverklaring</a></li>
+                        <li><a href="#colofon">Colofon</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Openingstijden</h4>
+                    <div class="opening-hours" id="opening-hours">
+                        <p>Ma-Zo: 16:00 - 23:00</p>
+                        <p><i class="fas fa-phone"></i> Bel voor bezorging</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Grillroom Sphinx Utrecht. Alle rechten voorbehouden.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading indicator -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Menu laden...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
