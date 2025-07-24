@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grillroom Sphinx Utrecht - Menu</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="styles.css?v=2027">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -14,15 +15,18 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <h1><i class="fas fa-utensils"></i> Grillroom Sphinx</h1>
-                    <p>Utrecht</p>
+                    <img src="logo.png" alt="Grillroom Sphinx Utrecht" class="logo-image">
+                    <div class="logo-text">
+                        
+                        <p>Utrecht</p>
+                    </div>
                 </div>
                 <nav class="nav">
                     <ul class="nav-list">
                         <li><a href="#menu" class="nav-link active">Menukaart</a></li>
-                        <li><a href="#reviews" class="nav-link">Beoordelingen</a></li>
                         <li><a href="#contact" class="nav-link">Contact</a></li>
-                        <li><a href="#colofon" class="nav-link">Colofon</a></li>
+                        <li><a href="https://www.grillroomsphinxutrecht.nl/" class="nav-link" target="_blank">Online Eten Bestellen</a></li>
+                        
                     </ul>
                 </nav>
                 <div class="header-info">
@@ -65,6 +69,55 @@
                     <!-- Menu items will be dynamically loaded here -->
                 </div>
             </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="contact-section" style="display: none;">
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h2>CONTACT INFORMATIE</h2>
+                        <div class="contact-details">
+                            <p><strong>Grillroom Sphinx Utrecht</strong></p>
+                            <p>Biltstraat 51</p>
+                            <p>3572AE Utrecht</p>
+                            <p class="phone-number"><i class="fas fa-phone"></i> 030-232 27 72</p>
+                        </div>
+                    </div>
+                    
+                    <div class="opening-hours">
+                        <h2>BEZORG TIJDEN</h2>
+                        <div class="hours-table">
+                            <div class="hours-row">
+                                <span class="day">Maandag</span>
+                                <span class="hours">Gesloten</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="day">Dinsdag</span>
+                                <span class="hours">16:00 - 21:30</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="day">Woensdag</span>
+                                <span class="hours">16:00 - 21:30</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="day">Donderdag</span>
+                                <span class="hours">16:00 - 21:30</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="day">Vrijdag</span>
+                                <span class="hours">16:00 - 21:30</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="day">Zaterdag</span>
+                                <span class="hours">16:00 - 21:30</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="day">Zondag</span>
+                                <span class="hours">16:00 - 21:30</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
 
@@ -72,31 +125,24 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3><i class="fas fa-utensils"></i> Grillroom Sphinx</h3>
+                <div class="footer-section footer-brand">
+                    <h2>GRILLROOM<br>SPHINX</h2>
                     <p>Uw favoriete grillroom in Utrecht</p>
                 </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <div class="contact-info">
+                <div class="footer-section footer-box">
+                    <h3>Contact</h3>
+                    <div class="footer-box-content">
                         <p><i class="fas fa-map-marker-alt"></i> Biltstraat 51</p>
                         <p>3572AE Utrecht</p>
-                        <p><i class="fas fa-globe"></i> Online Eten Bestellen</p>
+                        <p><i class="fas fa-globe"></i> <a href="https://www.grillroomsphinxutrecht.nl/" target="_blank" style="color: var(--primary-gold); text-decoration: none;">Online Eten Bestellen</a></p>
                     </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Informatie</h4>
-                    <ul class="footer-links">
-                        <li><a href="#algemene-voorwaarden">Algemene voorwaarden</a></li>
-                        <li><a href="#privacy">Privacy statement</a></li>
-                        <li><a href="#cookies">Cookieverklaring</a></li>
-                        <li><a href="#colofon">Colofon</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Openingstijden</h4>
-                    <div class="opening-hours" id="opening-hours">
-                        <p>Ma-Zo: 16:00 - 23:00</p>
+
+                <div class="footer-section footer-box">
+                    <h3>Openingstijden</h3>
+                    <div class="footer-box-content">
+                        <p>Ma: Gesloten</p>
+                        <p>Di-Zo: 16:00 - 21:30</p>
                         <p><i class="fas fa-phone"></i> Bel voor bezorging</p>
                     </div>
                 </div>
@@ -113,6 +159,6 @@
         <p>Menu laden...</p>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2031"></script>
 </body>
 </html> 

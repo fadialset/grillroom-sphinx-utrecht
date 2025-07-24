@@ -1,10 +1,10 @@
 // Admin JavaScript
 class RestaurantAdmin {
     constructor() {
-        this.password = 'admin123'; // Simple password
+        this.password = window.ADMIN_CONFIG.password;
         this.githubToken = null;
         this.currentUser = null;
-        this.repository = null; // Will be set from current origin
+        this.repository = null;
         this.menuData = null;
         this.hasChanges = false;
         
@@ -24,17 +24,14 @@ class RestaurantAdmin {
     }
 
     detectRepository() {
-        // Try to detect repository from current URL or set manually
         const currentDomain = window.location.hostname;
         if (currentDomain.includes('github.io')) {
-            // Extract repo from GitHub Pages URL
             const pathParts = window.location.pathname.split('/');
             const repoName = pathParts[1];
             const username = currentDomain.split('.')[0];
             this.repository = `${username}/${repoName}`;
         } else {
-            // For local development or custom domains, you'll need to set this manually
-            this.repository = 'YOUR_USERNAME/YOUR_REPO_NAME'; // Will be updated by user
+            this.repository = 'YOUR_USERNAME/YOUR_REPO_NAME';
         }
     }
 
@@ -48,6 +45,17 @@ class RestaurantAdmin {
         // Logout button
         document.getElementById('logout-btn').addEventListener('click', () => {
             this.handleLogout();
+        });
+
+        // Add item form
+        document.getElementById('add-item-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleAddItem();
+        });
+
+        // Clear form button
+        document.getElementById('clear-form-btn').addEventListener('click', () => {
+            this.clearAddItemForm();
         });
 
         // Save changes button
@@ -140,6 +148,15 @@ class RestaurantAdmin {
                                data-category-id="${category.id}"
                                placeholder="0,00">
                     </td>
+                    <td>
+                        <button class="delete-btn" 
+                                data-item-id="${item.id}"
+                                data-category-id="${category.id}"
+                                data-item-name="${item.name}"
+                                title="Verwijder item">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
                 `;
                 
                 tbody.appendChild(row);
@@ -151,6 +168,16 @@ class RestaurantAdmin {
             input.addEventListener('input', (e) => {
                 e.target.classList.add('changed');
                 this.markAsChanged();
+            });
+        });
+
+        // Add event listeners to delete buttons
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const categoryId = e.target.closest('button').dataset.categoryId;
+                const itemId = e.target.closest('button').dataset.itemId;
+                const itemName = e.target.closest('button').dataset.itemName;
+                this.handleDeleteItem(categoryId, itemId, itemName);
             });
         });
     }
@@ -324,6 +351,83 @@ class RestaurantAdmin {
         setTimeout(() => {
             message.remove();
         }, 5000);
+    }
+
+    handleAddItem() {
+        const category = document.getElementById('new-item-category').value;
+        const name = document.getElementById('new-item-name').value.trim();
+        const price = document.getElementById('new-item-price').value.trim();
+        const description = document.getElementById('new-item-description').value.trim();
+
+        // Validation
+        if (!category || !name || !price) {
+            this.showMessage('Vul alle verplichte velden in', 'error');
+            return;
+        }
+
+        // Validate price format
+        if (!/^\d+,\d{2}$/.test(price)) {
+            this.showMessage('Prijs moet in formaat 0,00 zijn (bijv. 10,50)', 'error');
+            return;
+        }
+
+        // Generate unique ID
+        const id = name.toLowerCase()
+            .replace(/[^a-z0-9\s]/g, '')
+            .replace(/\s+/g, '-')
+            .substring(0, 50);
+
+        // Check if ID already exists
+        const categoryData = this.menuData.categories.find(cat => cat.id === category);
+        if (categoryData && categoryData.items.find(item => item.id === id)) {
+            this.showMessage('Een item met deze naam bestaat al in deze categorie', 'error');
+            return;
+        }
+
+        // Create new item
+        const newItem = {
+            id: id,
+            name: name,
+            price: price,
+            description: description,
+            image: `images/${id}.jpg`
+        };
+
+        // Add to menu data
+        if (categoryData) {
+            categoryData.items.push(newItem);
+        }
+
+        // Update display
+        this.populateMenuTable();
+        this.clearAddItemForm();
+        this.markAsChanged();
+        this.showMessage(`Item "${name}" succesvol toegevoegd!`);
+    }
+
+    handleDeleteItem(categoryId, itemId, itemName) {
+        if (!confirm(`Weet je zeker dat je "${itemName}" wilt verwijderen?`)) {
+            return;
+        }
+
+        // Find and remove item
+        const category = this.menuData.categories.find(cat => cat.id === categoryId);
+        if (category) {
+            const itemIndex = category.items.findIndex(item => item.id === itemId);
+            if (itemIndex > -1) {
+                category.items.splice(itemIndex, 1);
+                this.populateMenuTable();
+                this.markAsChanged();
+                this.showMessage(`Item "${itemName}" succesvol verwijderd!`);
+            }
+        }
+    }
+
+    clearAddItemForm() {
+        document.getElementById('new-item-category').value = '';
+        document.getElementById('new-item-name').value = '';
+        document.getElementById('new-item-price').value = '';
+        document.getElementById('new-item-description').value = '';
     }
 }
 

@@ -2,16 +2,16 @@
   "restaurant": {
     "name": "GRILLROOM SPHINX UTRECHT",
     "address": "Biltstraat 51, 3572AE Utrecht",
-    "phone": ""
+    "phone": "030-232 27 72"
   },
   "opening_hours": {
-    "monday": "16:00 - 23:00",
-    "tuesday": "16:00 - 23:00", 
-    "wednesday": "16:00 - 23:00",
-    "thursday": "16:00 - 23:00",
-    "friday": "16:00 - 23:00",
-    "saturday": "16:00 - 23:00",
-    "sunday": "16:00 - 23:00"
+    "monday": "Gesloten",
+    "tuesday": "16:00 - 21:30", 
+    "wednesday": "16:00 - 21:30",
+    "thursday": "16:00 - 21:30",
+    "friday": "16:00 - 21:30",
+    "saturday": "16:00 - 21:30",
+    "sunday": "16:00 - 21:30"
   },
   "categories": [
     {
@@ -434,28 +434,28 @@
           "name": "Coca-Cola 33cl",
           "price": "3,00",
           "description": "0,33l",
-          "image": "images/coca-cola.jpg"
+          "image": "images/cocacola.png"
         },
         {
           "id": "coca-cola-zero",
           "name": "Coca-Cola zero sugar 33cl",
           "price": "3,00",
           "description": "0,33l",
-          "image": "images/coca-cola-zero.jpg"
+          "image": "images/cocacola-zero.png"
         },
         {
           "id": "fanta-orange",
           "name": "Fanta Orange 33cl",
           "price": "3,00",
           "description": "0,33l",
-          "image": "images/fanta-orange.jpg"
+          "image": "images/fanta.png"
         },
         {
           "id": "aa-drink",
           "name": "AA Drink",
           "price": "3,50",
           "description": "0,33l",
-          "image": "images/aa-drink.jpg"
+          "image": "images/aa-drink.jpeg"
         },
         {
           "id": "sprite",
@@ -476,7 +476,7 @@
           "name": "Cassis",
           "price": "3,50",
           "description": "0,33l",
-          "image": "images/cassis.jpg"
+          "image": "images/casis.jpg"
         },
         {
           "id": "mangosap",
@@ -490,14 +490,14 @@
           "name": "Fernandes Cherry Bouquet 33cl",
           "price": "3,50",
           "description": "0,33l",
-          "image": "images/fernandes-cherry.jpg"
+          "image": "images/fernandes.png"
         },
         {
           "id": "fernandes-green",
           "name": "Fernandes Green Punch 33cl",
           "price": "3,50",
           "description": "0,33l",
-          "image": "images/fernandes-green.jpg"
+          "image": "images/fernandes-green.png"
         },
         {
           "id": "spa-blauw",
@@ -511,42 +511,42 @@
           "name": "Spa rood",
           "price": "2,75",
           "description": "0,33l",
-          "image": "images/spa-rood.jpg"
+          "image": "images/spa-rood.jpeg"
         },
         {
           "id": "dr-pepper",
           "name": "Dr Pepper",
           "price": "3,00",
           "description": "0,33l",
-          "image": "images/dr-pepper.jpg"
+          "image": "images/dr-pepper-regular-355ml.webp"
         },
         {
           "id": "ice-tea",
           "name": "Ice tea",
           "price": "3,00",
           "description": "0,33l",
-          "image": "images/ice-tea.jpg"
+          "image": "images/ice-tea.avif"
         },
         {
           "id": "ice-tea-green",
           "name": "Ice tea green",
           "price": "3,00",
           "description": "0,33l",
-          "image": "images/ice-tea-green.jpg"
+          "image": "images/ice-tea-green.avif"
         },
         {
           "id": "red-bull",
           "name": "Red Bull Energy Drink 25cl",
           "price": "4,00",
           "description": "0,33l",
-          "image": "images/red-bull.jpg"
+          "image": "images/red-bull.jpeg"
         },
         {
           "id": "schweppes-bitter",
           "name": "Schweppes bitter lemon",
           "price": "3,00",
           "description": "0,33l",
-          "image": "images/schweppes-bitter.jpg"
+          "image": "images/schweppes-bitter-lemon-blikjes.jpeg"
         }
       ]
     }

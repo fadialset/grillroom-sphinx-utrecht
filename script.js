@@ -25,7 +25,7 @@ class MenuApp {
 
     async loadMenuData() {
         try {
-            const response = await fetch('menu.json');
+            const response = await fetch('menu.json?v=' + Date.now());
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -46,17 +46,29 @@ class MenuApp {
             });
         });
 
-        // Smooth scrolling for navigation links
+        // Navigation link handlers
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault();
                 const targetId = link.getAttribute('href');
+                
+                // Only prevent default for internal navigation
                 if (targetId.startsWith('#')) {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    e.preventDefault();
+                    
+                    if (targetId === '#menu') {
+                        this.showMenuSection();
+                        this.updateActiveNavLink('menu');
+                    } else if (targetId === '#contact') {
+                        this.showContactSection();
+                        this.updateActiveNavLink('contact');
+                    } else {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
                     }
                 }
+                // External links (like Online Eten Bestellen) will work normally
             });
         });
     }
@@ -133,19 +145,20 @@ class MenuApp {
             menuItem.classList.add('vegetarian');
         }
 
-        // Create image placeholder
-        const image = document.createElement('div');
+        // Create image element
+        const image = document.createElement('img');
         image.className = 'item-image';
-        image.textContent = 'Afbeelding niet beschikbaar';
+        image.src = item.image;
+        image.alt = item.name;
+        image.loading = 'lazy';
         
-        // If you want to add actual images later, uncomment this:
-        // const image = document.createElement('img');
-        // image.className = 'item-image';
-        // image.src = item.image;
-        // image.alt = item.name;
-        // image.onerror = function() {
-        //     this.style.display = 'none';
-        // };
+        // Handle image load errors
+        image.onerror = function() {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'item-image-placeholder';
+            placeholder.innerHTML = '<i class="fas fa-image"></i><span>Afbeelding niet beschikbaar</span>';
+            this.parentNode.replaceChild(placeholder, this);
+        };
 
         const itemHeader = document.createElement('div');
         itemHeader.className = 'item-header';
@@ -258,6 +271,37 @@ class MenuApp {
                 ">Probeer opnieuw</button>
             </div>
         `;
+    }
+
+    showMenuSection() {
+        const menuContent = document.querySelector('.menu-content');
+        const contactSection = document.querySelector('#contact');
+        const menuNav = document.querySelector('.menu-nav');
+        
+        if (menuContent) menuContent.style.display = 'block';
+        if (contactSection) contactSection.style.display = 'none';
+        if (menuNav) menuNav.style.display = 'block';
+    }
+
+    showContactSection() {
+        const menuContent = document.querySelector('.menu-content');
+        const contactSection = document.querySelector('#contact');
+        const menuNav = document.querySelector('.menu-nav');
+        
+        if (menuContent) menuContent.style.display = 'none';
+        if (contactSection) contactSection.style.display = 'block';
+        if (menuNav) menuNav.style.display = 'none';
+    }
+
+    updateActiveNavLink(activeSection) {
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        const activeLink = document.querySelector(`a[href="#${activeSection}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
     }
 }
 

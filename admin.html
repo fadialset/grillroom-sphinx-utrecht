@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Grillroom Sphinx Utrecht</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="admin.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,7 +14,7 @@
     <div id="login-screen" class="login-screen">
         <div class="login-container">
             <div class="login-card">
-                <h1><i class="fas fa-utensils"></i> Sphinx Admin</h1>
+                <h1><img src="logo.png" alt="Sphinx" class="admin-logo"> Sphinx Admin</h1>
                 <p>Voer het wachtwoord in om verder te gaan</p>
                 
                 <form id="login-form" class="login-form">
@@ -37,7 +38,7 @@
         <!-- Header -->
         <header class="admin-header">
             <div class="admin-header-content">
-                <h1><i class="fas fa-utensils"></i> Sphinx Admin Panel</h1>
+                <h1><img src="logo.png" alt="Sphinx" class="admin-logo"> Sphinx Admin</h1>
                 <div class="admin-actions">
                     <button id="logout-btn" class="btn-secondary">
                         <i class="fas fa-sign-out-alt"></i> Uitloggen
@@ -89,6 +90,47 @@
                 <section class="admin-section">
                     <h2><i class="fas fa-utensils"></i> Menu Items & Prijzen</h2>
                     
+                    <!-- Add New Item Section -->
+                    <div class="add-item-section">
+                        <h3><i class="fas fa-plus"></i> Nieuw Item Toevoegen</h3>
+                        <form id="add-item-form" class="add-item-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="new-item-category">Categorie:</label>
+                                    <select id="new-item-category" required>
+                                        <option value="">Selecteer categorie...</option>
+                                        <option value="broodjes">Broodjes</option>
+                                        <option value="kapsalon">Kapsalon</option>
+                                        <option value="schotels">Schotels</option>
+                                        <option value="extras">Extra's</option>
+                                        <option value="sauzen">Sauzen</option>
+                                        <option value="dranken">Dranken</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-item-name">Item Naam:</label>
+                                    <input type="text" id="new-item-name" placeholder="Bijv. Broodje shoarma groot" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-item-price">Prijs (€):</label>
+                                    <input type="text" id="new-item-price" placeholder="10,50" pattern="[0-9]+,[0-9]{2}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-item-description">Beschrijving (optioneel):</label>
+                                    <input type="text" id="new-item-description" placeholder="Extra informatie over het item">
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-plus"></i> Item Toevoegen
+                                </button>
+                                <button type="button" id="clear-form-btn" class="btn-secondary">
+                                    <i class="fas fa-times"></i> Wissen
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
                     <!-- Category Filter -->
                     <div class="category-filter">
                         <button class="filter-btn active" data-category="all">Alle Items</button>
@@ -109,6 +151,7 @@
                                     <th>Item Naam</th>
                                     <th>Huidige Prijs</th>
                                     <th>Nieuwe Prijs</th>
+                                    <th>Acties</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -145,6 +188,7 @@
     <!-- Success/Error Messages -->
     <div id="message-container" class="message-container"></div>
 
+    <script src="config.js"></script>
     <script src="admin.js"></script>
 </body>
 </html> 
