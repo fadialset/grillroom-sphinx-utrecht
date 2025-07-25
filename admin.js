@@ -31,7 +31,9 @@ class RestaurantAdmin {
             const username = currentDomain.split('.')[0];
             this.repository = `${username}/${repoName}`;
         } else {
-            this.repository = 'YOUR_USERNAME/YOUR_REPO_NAME';
+            // When running locally, keep the repository from config.js or use default
+            // Don't override this.repository since it's already set in constructor
+            console.log('Running locally, using repository from config:', this.repository);
         }
     }
 
@@ -290,15 +292,29 @@ class RestaurantAdmin {
         }
 
         try {
+            // Debug: Log the values we're using
+            console.log('Debug - Repository:', this.repository);
+            console.log('Debug - Filename:', filename);
+            console.log('Debug - GitHub Token exists:', !!this.githubToken);
+            console.log('Debug - GitHub Token length:', this.githubToken ? this.githubToken.length : 0);
+            
+            const apiUrl = `https://api.github.com/repos/${this.repository}/contents/${filename}`;
+            console.log('Debug - API URL:', apiUrl);
+            
             // Get current file SHA
-            const getCurrentResponse = await fetch(`https://api.github.com/repos/${this.repository}/contents/${filename}`, {
+            const getCurrentResponse = await fetch(apiUrl, {
                 headers: {
-                    'Authorization': `Bearer ${this.githubToken}`,
+                    'Authorization': `token ${this.githubToken}`,
                     'Accept': 'application/vnd.github.v3+json'
                 }
             });
 
+            console.log('Debug - Response status:', getCurrentResponse.status);
+            console.log('Debug - Response headers:', Object.fromEntries(getCurrentResponse.headers.entries()));
+
             if (!getCurrentResponse.ok) {
+                const errorText = await getCurrentResponse.text();
+                console.log('Debug - Error response:', errorText);
                 throw new Error(`Kan ${filename} niet ophalen: ${getCurrentResponse.statusText}`);
             }
 
@@ -308,7 +324,7 @@ class RestaurantAdmin {
             const updateResponse = await fetch(`https://api.github.com/repos/${this.repository}/contents/${filename}`, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${this.githubToken}`,
+                    'Authorization': `token ${this.githubToken}`,
                     'Accept': 'application/vnd.github.v3+json',
                     'Content-Type': 'application/json'
                 },

@@ -26,7 +26,7 @@ jobs:
       run: |
         echo "window.ADMIN_CONFIG = {" > config.js
         echo "    password: '${{ secrets.ADMIN_PASSWORD || 'admin123' }}'," >> config.js
-        echo "    githubToken: '${{ secrets.GITHUB_TOKEN }}'," >> config.js
+        echo "    githubToken: '${{ secrets.GITHUB_API_TOKEN }}'," >> config.js
         echo "    repository: '${{ github.repository }}'" >> config.js
         echo "};" >> config.js
         
