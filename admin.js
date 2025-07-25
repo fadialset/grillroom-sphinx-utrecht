@@ -1,7 +1,7 @@
 // Admin JavaScript
 class RestaurantAdmin {
     constructor() {
-        this.password = window.ADMIN_CONFIG.password;
+        this.password = window.ADMIN_CONFIG?.password || 'admin123';
         this.githubToken = null;
         this.currentUser = null;
         this.repository = null;
