@@ -6,7 +6,7 @@
   },
   "opening_hours": {
     "monday": "Gesloten",
-    "tuesday": "16:00 - 21:30", 
+    "tuesday": "16:00 - 21:30",
     "wednesday": "16:00 - 21:30",
     "thursday": "16:00 - 21:30",
     "friday": "16:00 - 21:30",
@@ -523,7 +523,7 @@
         {
           "id": "ice-tea",
           "name": "Ice tea",
-          "price": "3,00",
+          "price": "4,00",
           "description": "0,33l",
           "image": "images/ice-tea.avif"
         },
@@ -551,4 +551,4 @@
       ]
     }
   ]
-} 
+}
