@@ -2,9 +2,9 @@
 class RestaurantAdmin {
     constructor() {
         this.password = window.ADMIN_CONFIG?.password || 'admin123';
-        this.githubToken = null;
+        this.githubToken = window.ADMIN_CONFIG?.githubToken || null;
+        this.repository = window.ADMIN_CONFIG?.repository || 'fadialset/grillroom-sphinx-utrecht';
         this.currentUser = null;
-        this.repository = null;
         this.menuData = null;
         this.hasChanges = false;
         
@@ -253,16 +253,19 @@ class RestaurantAdmin {
         this.showLoading('Wijzigingen opslaan naar GitHub...');
 
         try {
-            // For demo purposes, we'll save to localStorage and show success
-            // In production, this would use GitHub API
-            
+            if (!this.githubToken) {
+                throw new Error('GitHub token niet geconfigureerd. Check je config.js bestand.');
+            }
+
+            // Update localStorage for immediate preview
             localStorage.setItem('sphinx_menu_data', JSON.stringify(this.menuData));
             
-            // Simulate API delay
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            // Save to GitHub using API
+            const updatedContent = JSON.stringify(this.menuData, null, 2);
+            await this.updateGitHubFile('menu.json', updatedContent);
             
             this.hideLoading();
-            this.showMessage('Wijzigingen succesvol opgeslagen!');
+            this.showMessage('Wijzigingen succesvol opgeslagen naar GitHub!', 'success');
             
             // Reset change tracking
             this.hasChanges = false;
@@ -273,12 +276,6 @@ class RestaurantAdmin {
             const saveBtn = document.getElementById('save-changes-btn');
             saveBtn.innerHTML = '<i class="fas fa-save"></i> Wijzigingen Opslaan';
             
-            // In a real implementation, you would use the GitHub API like this:
-            /*
-            const updatedContent = JSON.stringify(this.menuData, null, 2);
-            const response = await this.updateGitHubFile('menu.json', updatedContent);
-            */
-            
         } catch (error) {
             this.hideLoading();
             this.showMessage('Fout bij opslaan: ' + error.message, 'error');
@@ -286,49 +283,57 @@ class RestaurantAdmin {
         }
     }
 
-    // GitHub API methods (for future implementation)
+    // GitHub API methods
     async updateGitHubFile(filename, content) {
-        const token = this.getGitHubToken();
-        if (!token) {
+        if (!this.githubToken) {
             throw new Error('GitHub token niet geconfigureerd');
         }
 
-        // Get current file SHA
-        const getCurrentFile = await fetch(`https://api.github.com/repos/${this.repository}/contents/${filename}`, {
-            headers: {
-                'Authorization': `token ${token}`,
-                'Accept': 'application/vnd.github.v3+json'
+        try {
+            // Get current file SHA
+            const getCurrentResponse = await fetch(`https://api.github.com/repos/${this.repository}/contents/${filename}`, {
+                headers: {
+                    'Authorization': `Bearer ${this.githubToken}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+
+            if (!getCurrentResponse.ok) {
+                throw new Error(`Kan ${filename} niet ophalen: ${getCurrentResponse.statusText}`);
             }
-        });
 
-        const currentFile = await getCurrentFile.json();
-        
-        // Update file
-        const response = await fetch(`https://api.github.com/repos/${this.repository}/contents/${filename}`, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `token ${token}`,
-                'Accept': 'application/vnd.github.v3+json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: 'Update menu prices and opening hours via admin panel',
-                content: btoa(content), // Base64 encode
-                sha: currentFile.sha
-            })
-        });
+            const currentFile = await getCurrentResponse.json();
+            
+            // Update file
+            const updateResponse = await fetch(`https://api.github.com/repos/${this.repository}/contents/${filename}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${this.githubToken}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Update menu via admin panel',
+                    content: btoa(unescape(encodeURIComponent(content))), // Proper UTF-8 encoding
+                    sha: currentFile.sha,
+                    branch: 'production'
+                })
+            });
 
-        if (!response.ok) {
-            throw new Error(`GitHub API error: ${response.statusText}`);
+            if (!updateResponse.ok) {
+                const errorData = await updateResponse.json();
+                throw new Error(`GitHub API error: ${errorData.message || updateResponse.statusText}`);
+            }
+
+            return await updateResponse.json();
+            
+        } catch (error) {
+            console.error('GitHub API Error:', error);
+            throw error;
         }
-
-        return response.json();
     }
 
-    getGitHubToken() {
-        // In production, this would be set by the user during setup
-        return localStorage.getItem('github_token') || null;
-    }
+
 
     showLoading(text = 'Laden...') {
         document.getElementById('loading-text').textContent = text;

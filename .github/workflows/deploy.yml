@@ -22,10 +22,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       
-    - name: Create config.js with secret password
+    - name: Create config.js with secrets
       run: |
         echo "window.ADMIN_CONFIG = {" > config.js
-        echo "    password: '${{ secrets.ADMIN_PASSWORD || 'admin123' }}'" >> config.js
+        echo "    password: '${{ secrets.ADMIN_PASSWORD || 'admin123' }}'," >> config.js
+        echo "    githubToken: '${{ secrets.GITHUB_TOKEN }}'," >> config.js
+        echo "    repository: '${{ github.repository }}'" >> config.js
         echo "};" >> config.js
         
     - name: Setup Pages
