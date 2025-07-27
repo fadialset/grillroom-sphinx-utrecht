@@ -7,6 +7,16 @@ class MenuApp {
         this.loadingElement = document.getElementById('loading');
         this.categoryButtons = document.querySelectorAll('.category-btn');
         
+        // Category image mapping
+        this.categoryImages = {
+            'schotels': 'Schotels.jpg',
+            'extras': 'extras.jpg',
+            'sauzen': 'souzen.jpg',
+            'dranken': 'drankjes.jpg',
+            'broodjes': 'broodjes.jpeg',
+            'kapsalon': 'kapsalons.jpg'
+        };
+        
         this.init();
     }
 
@@ -111,18 +121,38 @@ class MenuApp {
         section.className = 'category-section';
         section.setAttribute('data-category', category.id);
 
+        // Add category image if available
+        if (this.categoryImages[category.id]) {
+            const categoryImage = document.createElement('img');
+            categoryImage.className = 'category-image';
+            categoryImage.src = this.categoryImages[category.id];
+            categoryImage.alt = category.name;
+            categoryImage.loading = 'lazy';
+            
+            // Handle image load errors
+            categoryImage.onerror = function() {
+                this.style.display = 'none';
+            };
+            
+            section.appendChild(categoryImage);
+        }
+
+        // Create content container
+        const contentContainer = document.createElement('div');
+        contentContainer.className = 'category-content';
+
         const title = document.createElement('h2');
         title.className = 'category-title';
         title.textContent = category.name;
 
-        section.appendChild(title);
+        contentContainer.appendChild(title);
 
         // Add category description if exists
         if (category.description) {
             const description = document.createElement('p');
             description.className = 'category-description';
             description.textContent = category.description;
-            section.appendChild(description);
+            contentContainer.appendChild(description);
         }
 
         const itemsGrid = document.createElement('div');
@@ -133,7 +163,8 @@ class MenuApp {
             itemsGrid.appendChild(itemElement);
         });
 
-        section.appendChild(itemsGrid);
+        contentContainer.appendChild(itemsGrid);
+        section.appendChild(contentContainer);
         return section;
     }
 
@@ -145,20 +176,8 @@ class MenuApp {
             menuItem.classList.add('vegetarian');
         }
 
-        // Create image element
-        const image = document.createElement('img');
-        image.className = 'item-image';
-        image.src = item.image;
-        image.alt = item.name;
-        image.loading = 'lazy';
-        
-        // Handle image load errors
-        image.onerror = function() {
-            const placeholder = document.createElement('div');
-            placeholder.className = 'item-image-placeholder';
-            placeholder.innerHTML = '<i class="fas fa-image"></i><span>Afbeelding niet beschikbaar</span>';
-            this.parentNode.replaceChild(placeholder, this);
-        };
+        const itemContent = document.createElement('div');
+        itemContent.className = 'item-content';
 
         const itemHeader = document.createElement('div');
         itemHeader.className = 'item-header';
@@ -174,17 +193,17 @@ class MenuApp {
         itemHeader.appendChild(itemName);
         itemHeader.appendChild(itemPrice);
 
-        menuItem.appendChild(image);
-        menuItem.appendChild(itemHeader);
+        itemContent.appendChild(itemHeader);
 
         // Add description if exists
         if (item.description) {
             const description = document.createElement('p');
             description.className = 'item-description';
             description.textContent = item.description;
-            menuItem.appendChild(description);
+            itemContent.appendChild(description);
         }
 
+        menuItem.appendChild(itemContent);
         return menuItem;
     }
 
