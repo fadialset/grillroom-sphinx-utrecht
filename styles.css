@@ -87,7 +87,7 @@ body {
 }
 
 .logo-image {
-    height: 120px;
+    height: 200px;
     width: auto;
     filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
 }

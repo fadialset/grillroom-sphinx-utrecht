@@ -9,9 +9,9 @@ class MenuApp {
         
         // Category image mapping
         this.categoryImages = {
-            'schotels': 'Schotels.jpg',
+            'schotels': 'schotels.jpeg',
             'extras': 'extras.jpg',
-            'sauzen': 'souzen.jpg',
+            'sauzen': 'sauces.jpg',
             'dranken': 'drankjes.jpg',
             'broodjes': 'broodjes.jpeg',
             'kapsalon': 'kapsalons.jpg'
