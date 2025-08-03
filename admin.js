@@ -8,13 +8,6 @@ class RestaurantAdmin {
         this.menuData = null;
         this.hasChanges = false;
         
-        // Debug: Log the configuration
-        console.log('Debug - ADMIN_CONFIG loaded:', !!window.ADMIN_CONFIG);
-        console.log('Debug - Password exists:', !!this.password);
-        console.log('Debug - GitHub token exists:', !!this.githubToken);
-        console.log('Debug - GitHub token length:', this.githubToken ? this.githubToken.length : 0);
-        console.log('Debug - Repository:', this.repository);
-        
         this.init();
     }
 
@@ -40,7 +33,6 @@ class RestaurantAdmin {
         } else {
             // When running locally, keep the repository from config.js or use default
             // Don't override this.repository since it's already set in constructor
-            console.log('Running locally, using repository from config:', this.repository);
         }
     }
 
@@ -307,14 +299,7 @@ class RestaurantAdmin {
         }
 
         try {
-            // Debug: Log the values we're using
-            console.log('Debug - Repository:', this.repository);
-            console.log('Debug - Filename:', filename);
-            console.log('Debug - GitHub Token exists:', !!this.githubToken);
-            console.log('Debug - GitHub Token length:', this.githubToken ? this.githubToken.length : 0);
-            
             const apiUrl = `https://api.github.com/repos/${this.repository}/contents/${filename}`;
-            console.log('Debug - API URL:', apiUrl);
             
             // Get current file SHA
             const getCurrentResponse = await fetch(apiUrl, {
@@ -324,12 +309,8 @@ class RestaurantAdmin {
                 }
             });
 
-            console.log('Debug - Response status:', getCurrentResponse.status);
-            console.log('Debug - Response headers:', Object.fromEntries(getCurrentResponse.headers.entries()));
-
             if (!getCurrentResponse.ok) {
                 const errorText = await getCurrentResponse.text();
-                console.log('Debug - Error response:', errorText);
                 throw new Error(`Kan ${filename} niet ophalen: ${getCurrentResponse.statusText}`);
             }
 
