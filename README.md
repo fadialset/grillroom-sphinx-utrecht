@@ -1,6 +1,8 @@
-# Grillroom Sphinx Utrecht - Menu Website
+# Grillroom Sphinx Utrecht
 
-Een moderne, responsive website voor het tonen van het menu van Grillroom Sphinx Utrecht.
+Restaurant menu and admin panel for Grillroom Sphinx Utrecht.
+
+<!-- Updated to use GitHub secrets for secure configuration -->
 
 ## 📋 Projectoverzicht
 
