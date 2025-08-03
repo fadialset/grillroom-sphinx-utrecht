@@ -22,6 +22,20 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       
+    - name: Debug secrets
+      run: |
+        echo "Checking if secrets are available..."
+        if [ -n "${{ secrets.ADMIN_PASSWORD }}" ]; then
+          echo "ADMIN_PASSWORD is set (length: ${#ADMIN_PASSWORD})"
+        else
+          echo "ADMIN_PASSWORD is NOT set"
+        fi
+        if [ -n "${{ secrets.api_admin }}" ]; then
+          echo "api_admin is set (length: ${#api_admin})"
+        else
+          echo "api_admin is NOT set"
+        fi
+      
     - name: Create config.js with secrets
       run: |
         echo "window.ADMIN_CONFIG = {" > config.js
@@ -29,6 +43,7 @@ jobs:
         echo "    githubToken: '${{ secrets.api_admin }}'," >> config.js
         echo "    repository: '${{ github.repository }}'" >> config.js
         echo "};" >> config.js
+        echo "Config.js created with repository: ${{ github.repository }}"
         
     - name: Setup Pages
       uses: actions/configure-pages@v5
