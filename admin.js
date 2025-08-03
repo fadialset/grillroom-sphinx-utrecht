@@ -8,6 +8,12 @@ class RestaurantAdmin {
         this.menuData = null;
         this.hasChanges = false;
         
+        // Debug: Log the configuration
+        console.log('Debug - ADMIN_CONFIG loaded:', !!window.ADMIN_CONFIG);
+        console.log('Debug - GitHub token exists:', !!this.githubToken);
+        console.log('Debug - GitHub token length:', this.githubToken ? this.githubToken.length : 0);
+        console.log('Debug - Repository:', this.repository);
+        
         this.init();
     }
 
