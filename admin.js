@@ -1,7 +1,7 @@
 // Admin JavaScript
 class RestaurantAdmin {
     constructor() {
-        this.password = window.ADMIN_CONFIG?.password || 'admin123';
+        this.password = window.ADMIN_CONFIG?.password;
         this.githubToken = window.ADMIN_CONFIG?.githubToken || null;
         this.repository = window.ADMIN_CONFIG?.repository || 'fadialset/grillroom-sphinx-utrecht';
         this.currentUser = null;
@@ -10,6 +10,7 @@ class RestaurantAdmin {
         
         // Debug: Log the configuration
         console.log('Debug - ADMIN_CONFIG loaded:', !!window.ADMIN_CONFIG);
+        console.log('Debug - Password exists:', !!this.password);
         console.log('Debug - GitHub token exists:', !!this.githubToken);
         console.log('Debug - GitHub token length:', this.githubToken ? this.githubToken.length : 0);
         console.log('Debug - Repository:', this.repository);
@@ -83,12 +84,20 @@ class RestaurantAdmin {
         const passwordInput = document.getElementById('password');
         const errorDiv = document.getElementById('login-error');
         
+        // Check if password is configured
+        if (!this.password) {
+            errorDiv.textContent = 'Admin password niet geconfigureerd. Contacteer de beheerder.';
+            errorDiv.style.display = 'block';
+            return;
+        }
+        
         if (passwordInput.value === this.password) {
             localStorage.setItem('sphinx_admin_logged_in', 'true');
             this.showAdminInterface();
             this.loadMenuData();
             errorDiv.style.display = 'none';
         } else {
+            errorDiv.textContent = 'Incorrect wachtwoord. Probeer opnieuw.';
             errorDiv.style.display = 'block';
             passwordInput.value = '';
         }
