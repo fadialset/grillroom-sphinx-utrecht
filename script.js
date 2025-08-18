@@ -211,7 +211,9 @@ class MenuApp {
         if (!this.menuData || !this.menuData.opening_hours) return;
 
         const openingHoursContainer = document.getElementById('opening-hours');
-        if (!openingHoursContainer) return;
+        const footerOpeningHours = document.getElementById('footer-opening-hours');
+        
+        if (!openingHoursContainer && !footerOpeningHours) return;
 
         const hours = this.menuData.opening_hours;
         const dayTranslations = {
@@ -227,10 +229,20 @@ class MenuApp {
         // Group consecutive days with same hours
         const groupedHours = this.groupOpeningHours(hours, dayTranslations);
         
-        openingHoursContainer.innerHTML = `
-            ${groupedHours.map(group => `<p>${group}</p>`).join('')}
-            <p><i class="fas fa-phone"></i> Bel voor bezorging</p>
-        `;
+        // Render main opening hours section
+        if (openingHoursContainer) {
+            openingHoursContainer.innerHTML = `
+                ${groupedHours.map(group => `<p>${group}</p>`).join('')}
+                <p><i class="fas fa-phone"></i> Bel voor bezorging</p>
+            `;
+        }
+        
+        // Render footer opening hours
+        if (footerOpeningHours) {
+            footerOpeningHours.innerHTML = `
+                ${groupedHours.map(group => `<p>${group}</p>`).join('')}
+            `;
+        }
     }
 
     groupOpeningHours(hours, dayTranslations) {

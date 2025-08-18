@@ -5,13 +5,13 @@
     "phone": "030-232 27 72"
   },
   "opening_hours": {
-    "monday": "Gesloten",
-    "tuesday": "16:00 - 21:30",
-    "wednesday": "16:00 - 21:30",
-    "thursday": "16:00 - 21:30",
-    "friday": "16:00 - 21:30",
-    "saturday": "16:00 - 21:30",
-    "sunday": "16:00 - 21:30"
+    "monday": "12:00 - 04:30",
+    "tuesday": "Gesloten",
+    "wednesday": "16:00 - 00:00",
+    "thursday": "12:00 - 04:30, 16:00 - 00:00",
+    "friday": "12:00 - 05:30, 16:00 - 00:00",
+    "saturday": "12:00 - 06:00, 16:00 - 00:00",
+    "sunday": "12:00 - 06:00, 16:00 - 00:00"
   },
   "categories": [
     {

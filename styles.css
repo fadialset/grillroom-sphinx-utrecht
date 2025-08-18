@@ -38,12 +38,12 @@ body {
 
 /* Header Styles with Cover Background */
 .header {
-    background:  url('cover.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url('cover.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     color: var(--white);
-    padding: 2rem 0;
+    
     box-shadow: 0 4px 20px rgba(30, 58, 95, 0.3);
     min-height: 60vh;
     display: flex;
@@ -54,7 +54,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    
+    padding: 2rem 3rem;
+    width: 100%;
 }
 
 .header-top {
@@ -79,15 +81,12 @@ body {
     align-items: center;
     gap: 1rem;
     text-align: center;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(244, 228, 166, 0.2) 50%, rgba(255, 255, 255, 0.1) 100%);
     padding: 2rem 3rem;
     border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
 }
 
 .logo-image {
-    height: 200px;
+    height: 300px;
     width: auto;
     filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
 }
@@ -95,7 +94,7 @@ body {
 .restaurant-name {
     margin: 0;
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 900;
     color: #dc2626;
     text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
     letter-spacing: 2px;
