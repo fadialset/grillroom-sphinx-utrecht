@@ -21,14 +21,14 @@
         {
           "id": "shoarma-klein",
           "name": "Broodje shoarma klein",
-          "price": "7,00",
+          "price": "7,50",
           "description": "",
           "image": "images/broodje-shoarma.jpg"
         },
         {
           "id": "shoarma-medium",
           "name": "Broodje shoarma medium",
-          "price": "10,00",
+          "price": "9,00",
           "description": "",
           "image": "images/broodje-shoarma.jpg"
         },
@@ -56,42 +56,42 @@
         {
           "id": "kipfilet-klein",
           "name": "Broodje kipfilet klein",
-          "price": "10,00",
+          "price": "9,00",
           "description": "",
           "image": "images/broodje-kipfilet.jpg"
         },
         {
           "id": "kipfilet-groot",
           "name": "Broodje kipfilet groot",
-          "price": "13,00",
+          "price": "12,00",
           "description": "",
           "image": "images/broodje-kipfilet.jpg"
         },
         {
           "id": "kipfilet-kaas-klein",
           "name": "Broodje kipfilet met kaas klein",
-          "price": "11,00",
+          "price": "10,00",
           "description": "",
           "image": "images/broodje-kipfilet-kaas.jpg"
         },
         {
           "id": "kipfilet-kaas-groot",
           "name": "Broodje kipfilet met kaas groot",
-          "price": "14,00",
+          "price": "13,00",
           "description": "",
           "image": "images/broodje-kipfilet-kaas.jpg"
         },
         {
           "id": "sjasliek",
           "name": "Broodje sjasliek",
-          "price": "8,00",
+          "price": "7,50",
           "description": "",
           "image": "images/broodje-sjasliek.jpg"
         },
         {
           "id": "kebab",
           "name": "Broodje kebab",
-          "price": "8,00",
+          "price": "7,50",
           "description": "",
           "image": "images/broodje-kebab.jpg"
         },
@@ -105,7 +105,7 @@
         {
           "id": "falafel",
           "name": "Broodje falafel",
-          "price": "7,00",
+          "price": "6,50",
           "description": "Vegetarisch",
           "image": "images/broodje-falafel.jpg",
           "vegetarian": true
@@ -113,14 +113,14 @@
         {
           "id": "lamsvlees-klein",
           "name": "Broodje lamsvlees klein",
-          "price": "11,00",
+          "price": "10,00",
           "description": "",
           "image": "images/broodje-lamsvlees.jpg"
         },
         {
           "id": "lamsvlees-groot",
           "name": "Broodje lamsvlees groot",
-          "price": "15,00",
+          "price": "14,00",
           "description": "",
           "image": "images/broodje-lamsvlees.jpg"
         },
@@ -165,6 +165,20 @@
           "price": "10,00",
           "description": "",
           "image": "images/turkse-pizza-shoarma.jpg"
+        },
+        {
+          "id": "turkse-pizza-lamsvlees",
+          "name": "Turkse pizza lamsvlees",
+          "price": "11,00",
+          "description": "",
+          "image": "images/turkse-pizza-lamsvlees.jpg"
+        },
+        {
+          "id": "turkse-pizza-met-kip",
+          "name": "Turkse pizza met Kip",
+          "price": "11,00",
+          "description": "",
+          "image": "images/turkse-pizza-met-kip.jpg"
         }
       ]
     },
@@ -182,35 +196,35 @@
         {
           "id": "kapsalon-kip-klein",
           "name": "Kapsalon kip klein",
-          "price": "12,00",
+          "price": "11,00",
           "description": "Friet, kip, gesmolten kaas, salade en saus",
           "image": "images/kapsalon-kip.jpg"
         },
         {
           "id": "kapsalon-lamsvlees-klein",
           "name": "Kapsalon lamsvlees klein",
-          "price": "13,00",
+          "price": "12,00",
           "description": "Friet, lamsvlees, gesmolten kaas, salade en saus",
           "image": "images/kapsalon-lamsvlees.jpg"
         },
         {
           "id": "kapsalon-shoarma-groot",
           "name": "Kapsalon shoarma groot",
-          "price": "13,00",
+          "price": "12,50",
           "description": "Friet, shoarma, gesmolten kaas, salade en saus",
           "image": "images/kapsalon-shoarma.jpg"
         },
         {
           "id": "kapsalon-kip-groot",
           "name": "Kapsalon kip groot",
-          "price": "15,00",
+          "price": "14,00",
           "description": "Friet, kip, gesmolten kaas, salade en saus",
           "image": "images/kapsalon-kip.jpg"
         },
         {
           "id": "kapsalon-lamsvlees-groot",
           "name": "Kapsalon lamsvlees groot",
-          "price": "17,00",
+          "price": "16,00",
           "description": "Friet, lamsvlees, gesmolten kaas, salade en saus",
           "image": "images/kapsalon-lamsvlees.jpg"
         }
@@ -308,7 +322,7 @@
         {
           "id": "lamsshoarma-schotel",
           "name": "Lamsshoarma schotel",
-          "price": "22,00",
+          "price": "20,00",
           "description": "Met groene salade, Franse friet en pitabrood",
           "image": "images/lamsshoarma-schotel.jpg"
         },
