@@ -90,6 +90,35 @@
                 <section class="admin-section">
                     <h2><i class="fas fa-utensils"></i> Menu Items & Prijzen</h2>
                     
+                    <!-- Add New Category Section -->
+                    <div class="add-category-section">
+                        <h3><i class="fas fa-folder-plus"></i> Nieuwe Categorie Toevoegen</h3>
+                        <form id="add-category-form" class="add-category-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="new-category-id">Categorie ID:</label>
+                                    <input type="text" id="new-category-id" placeholder="bijv. desserts" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-category-name">Categorie Naam:</label>
+                                    <input type="text" id="new-category-name" placeholder="bijv. Desserts" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-category-description">Beschrijving (optioneel):</label>
+                                    <input type="text" id="new-category-description" placeholder="Extra informatie over de categorie">
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-folder-plus"></i> Categorie Toevoegen
+                                </button>
+                                <button type="button" id="clear-category-form-btn" class="btn-secondary">
+                                    <i class="fas fa-times"></i> Wissen
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
                     <!-- Add New Item Section -->
                     <div class="add-item-section">
                         <h3><i class="fas fa-plus"></i> Nieuw Item Toevoegen</h3>
@@ -99,12 +128,7 @@
                                     <label for="new-item-category">Categorie:</label>
                                     <select id="new-item-category" required>
                                         <option value="">Selecteer categorie...</option>
-                                        <option value="broodjes">Broodjes</option>
-                                        <option value="kapsalon">Kapsalon</option>
-                                        <option value="schotels">Schotels</option>
-                                        <option value="extras">Extra's</option>
-                                        <option value="sauzen">Sauzen</option>
-                                        <option value="dranken">Dranken</option>
+                                        <!-- Categories will be populated dynamically -->
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -134,12 +158,7 @@
                     <!-- Category Filter -->
                     <div class="category-filter">
                         <button class="filter-btn active" data-category="all">Alle Items</button>
-                        <button class="filter-btn" data-category="broodjes">Broodjes</button>
-                        <button class="filter-btn" data-category="kapsalon">Kapsalon</button>
-                        <button class="filter-btn" data-category="schotels">Schotels</button>
-                        <button class="filter-btn" data-category="extras">Extra's</button>
-                        <button class="filter-btn" data-category="sauzen">Sauzen</button>
-                        <button class="filter-btn" data-category="dranken">Dranken</button>
+                        <!-- Category filter buttons will be populated dynamically -->
                     </div>
 
                     <!-- Menu Table -->

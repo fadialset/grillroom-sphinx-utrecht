@@ -442,4 +442,57 @@ button:hover {
         overflow-x: auto;
         white-space: nowrap;
     }
+}
+
+/* Add Category Section */
+.add-category-section {
+    background: linear-gradient(135deg, var(--warm-cream) 0%, var(--sand-beige) 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    border: 2px solid var(--primary-gold-light);
+}
+
+.add-category-section h3 {
+    color: var(--sphinx-blue);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.add-category-section .fas {
+    color: var(--primary-gold);
+}
+
+/* Input Styling for Editable Fields */
+.name-input,
+.price-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid var(--primary-gold-light);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    background: var(--white);
+    transition: all 0.3s ease;
+}
+
+.name-input:focus,
+.price-input:focus {
+    outline: none;
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.name-input.changed,
+.price-input.changed {
+    border-color: var(--terracotta);
+    background: rgba(194, 65, 12, 0.05);
+}
+
+.name-input.changed:focus,
+.price-input.changed:focus {
+    border-color: var(--terracotta);
+    box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.1);
 } 

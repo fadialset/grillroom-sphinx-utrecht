@@ -23,6 +23,7 @@ class MenuApp {
     async init() {
         try {
             await this.loadMenuData();
+            this.populateCategories();
             this.setupEventListeners();
             this.renderMenu();
             this.renderOpeningHours();
@@ -44,6 +45,26 @@ class MenuApp {
             console.error('Error loading menu data:', error);
             throw error;
         }
+    }
+
+    populateCategories() {
+        const categoryContainer = document.querySelector('.menu-nav-container');
+        // Keep the "Alle" button
+        const allButton = categoryContainer.querySelector('[data-category="all"]');
+        categoryContainer.innerHTML = '';
+        categoryContainer.appendChild(allButton);
+        
+        // Add category buttons dynamically
+        this.menuData.categories.forEach(category => {
+            const button = document.createElement('button');
+            button.className = 'category-btn';
+            button.setAttribute('data-category', category.id);
+            button.textContent = category.name;
+            categoryContainer.appendChild(button);
+        });
+        
+        // Update the categoryButtons reference
+        this.categoryButtons = document.querySelectorAll('.category-btn');
     }
 
     setupEventListeners() {

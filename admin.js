@@ -48,6 +48,17 @@ class RestaurantAdmin {
             this.handleLogout();
         });
 
+        // Add category form
+        document.getElementById('add-category-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleAddCategory();
+        });
+
+        // Clear category form button
+        document.getElementById('clear-category-form-btn').addEventListener('click', () => {
+            this.clearAddCategoryForm();
+        });
+
         // Add item form
         document.getElementById('add-item-form').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -116,6 +127,7 @@ class RestaurantAdmin {
             this.menuData = await response.json();
             
             this.populateOpeningHours();
+            this.populateCategories();
             this.populateMenuTable();
             
         } catch (error) {
@@ -136,6 +148,41 @@ class RestaurantAdmin {
         });
     }
 
+    populateCategories() {
+        // Populate category dropdown in add item form
+        const categorySelect = document.getElementById('new-item-category');
+        categorySelect.innerHTML = '<option value="">Selecteer categorie...</option>';
+        
+        this.menuData.categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.id;
+            option.textContent = category.name;
+            categorySelect.appendChild(option);
+        });
+
+        // Populate category filter buttons
+        const categoryFilter = document.querySelector('.category-filter');
+        // Keep the "Alle Items" button
+        const allItemsBtn = categoryFilter.querySelector('[data-category="all"]');
+        categoryFilter.innerHTML = '';
+        categoryFilter.appendChild(allItemsBtn);
+        
+        this.menuData.categories.forEach(category => {
+            const button = document.createElement('button');
+            button.className = 'filter-btn';
+            button.dataset.category = category.id;
+            button.textContent = category.name;
+            categoryFilter.appendChild(button);
+        });
+
+        // Re-add event listeners to filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                this.filterCategory(e.target.dataset.category);
+            });
+        });
+    }
+
     populateMenuTable() {
         const tbody = document.querySelector('#menu-table tbody');
         tbody.innerHTML = '';
@@ -147,7 +194,14 @@ class RestaurantAdmin {
                 
                 row.innerHTML = `
                     <td><span class="category-badge">${category.name}</span></td>
-                    <td>${item.name}</td>
+                    <td>
+                        <input type="text" 
+                               class="name-input" 
+                               value="${item.name}" 
+                               data-item-id="${item.id}"
+                               data-category-id="${category.id}"
+                               placeholder="Item naam">
+                    </td>
                     <td>€${item.price}</td>
                     <td>
                         <input type="text" 
@@ -169,6 +223,14 @@ class RestaurantAdmin {
                 `;
                 
                 tbody.appendChild(row);
+            });
+        });
+
+        // Add event listeners to name inputs
+        document.querySelectorAll('.name-input').forEach(input => {
+            input.addEventListener('input', (e) => {
+                e.target.classList.add('changed');
+                this.markAsChanged();
             });
         });
 
@@ -232,6 +294,25 @@ class RestaurantAdmin {
             }
         });
 
+        // Collect name changes
+        const nameInputs = document.querySelectorAll('.name-input');
+        nameInputs.forEach(input => {
+            if (input.classList.contains('changed')) {
+                const categoryId = input.dataset.categoryId;
+                const itemId = input.dataset.itemId;
+                const newName = input.value;
+
+                // Update the menu data
+                const category = this.menuData.categories.find(cat => cat.id === categoryId);
+                if (category) {
+                    const item = category.items.find(item => item.id === itemId);
+                    if (item) {
+                        item.name = newName;
+                    }
+                }
+            }
+        });
+
         // Collect price changes
         const priceInputs = document.querySelectorAll('.price-input');
         priceInputs.forEach(input => {
@@ -278,7 +359,7 @@ class RestaurantAdmin {
             
             // Reset change tracking
             this.hasChanges = false;
-            document.querySelectorAll('.price-input.changed').forEach(input => {
+            document.querySelectorAll('.price-input.changed, .name-input.changed').forEach(input => {
                 input.classList.remove('changed');
             });
             
@@ -370,6 +451,46 @@ class RestaurantAdmin {
         }, 5000);
     }
 
+    handleAddCategory() {
+        const id = document.getElementById('new-category-id').value.trim().toLowerCase();
+        const name = document.getElementById('new-category-name').value.trim();
+        const description = document.getElementById('new-category-description').value.trim();
+
+        if (!id || !name) {
+            this.showMessage('Vul alle verplichte velden in', 'error');
+            return;
+        }
+
+        // Check if category ID already exists
+        if (this.menuData.categories.find(cat => cat.id === id)) {
+            this.showMessage('Categorie ID bestaat al. Gebruik een unieke ID.', 'error');
+            return;
+        }
+
+        // Create new category
+        const newCategory = {
+            id: id,
+            name: name,
+            description: description || '',
+            items: []
+        };
+
+        // Add to categories
+        this.menuData.categories.push(newCategory);
+
+        // Update the UI
+        this.populateCategories();
+        this.populateMenuTable();
+
+        // Clear form
+        this.clearAddCategoryForm();
+
+        // Mark as changed
+        this.markAsChanged();
+
+        this.showMessage(`Categorie "${name}" toegevoegd`, 'success');
+    }
+
     handleAddItem() {
         const category = document.getElementById('new-item-category').value;
         const name = document.getElementById('new-item-name').value.trim();
@@ -438,6 +559,12 @@ class RestaurantAdmin {
                 this.showMessage(`Item "${itemName}" succesvol verwijderd!`);
             }
         }
+    }
+
+    clearAddCategoryForm() {
+        document.getElementById('new-category-id').value = '';
+        document.getElementById('new-category-name').value = '';
+        document.getElementById('new-category-description').value = '';
     }
 
     clearAddItemForm() {
