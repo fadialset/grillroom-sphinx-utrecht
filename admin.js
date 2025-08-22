@@ -621,7 +621,7 @@ class RestaurantAdmin {
                 method: 'PUT',
                 headers: {
                     'Authorization': `token ${this.githubToken}`,
-                    'Accept': 'application/vnd.github.v3+json`,
+                    'Accept': 'application/vnd.github.v3+json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
