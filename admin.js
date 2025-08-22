@@ -518,15 +518,25 @@ class RestaurantAdmin {
             // Clear form
             this.clearAddCategoryForm();
 
-            // Mark as changed
-            this.markAsChanged();
-
-            this.hideLoading();
-            
-            if (imagePath) {
-                this.showMessage(`Categorie "${name}" met afbeelding toegevoegd`, 'success');
-            } else {
-                this.showMessage(`Categorie "${name}" toegevoegd`, 'success');
+            // Save to GitHub immediately
+            this.showLoading('Categorie opslaan naar GitHub...');
+            try {
+                const updatedContent = JSON.stringify(this.menuData, null, 2);
+                await this.updateGitHubFile('menu.json', updatedContent);
+                
+                this.hideLoading();
+                this.showMessage(`Categorie "${name}" succesvol opgeslagen naar GitHub!`, 'success');
+                
+                // Reset change tracking since we just saved
+                this.hasChanges = false;
+                const saveBtn = document.getElementById('save-changes-btn');
+                saveBtn.innerHTML = '<i class="fas fa-save"></i> Wijzigingen Opslaan';
+                
+            } catch (saveError) {
+                this.hideLoading();
+                this.showMessage(`Categorie toegevoegd maar fout bij opslaan: ${saveError.message}`, 'warning');
+                // Mark as changed so user can save manually
+                this.markAsChanged();
             }
 
         } catch (error) {
@@ -611,6 +621,12 @@ class RestaurantAdmin {
         document.getElementById('new-category-name').value = '';
         document.getElementById('new-category-description').value = '';
         document.getElementById('new-category-image').value = '';
+        
+        // Also clear any file input display
+        const fileInput = document.getElementById('new-category-image');
+        if (fileInput) {
+            fileInput.value = '';
+        }
     }
 
     clearAddItemForm() {
