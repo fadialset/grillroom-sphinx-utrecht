@@ -21,14 +21,14 @@
         {
           "id": "shoarma-klein",
           "name": "Broodje shoarma klein",
-          "price": "7,00",
+          "price": "7,50",
           "description": "",
           "image": "images/broodje-shoarma.jpg"
         },
         {
           "id": "shoarma-medium",
           "name": "Broodje shoarma medium",
-          "price": "10,00",
+          "price": "9,00",
           "description": "",
           "image": "images/broodje-shoarma.jpg"
         },
@@ -56,42 +56,42 @@
         {
           "id": "kipfilet-klein",
           "name": "Broodje kipfilet klein",
-          "price": "10,00",
+          "price": "9,00",
           "description": "",
           "image": "images/broodje-kipfilet.jpg"
         },
         {
           "id": "kipfilet-groot",
           "name": "Broodje kipfilet groot",
-          "price": "13,00",
+          "price": "12,00",
           "description": "",
           "image": "images/broodje-kipfilet.jpg"
         },
         {
           "id": "kipfilet-kaas-klein",
           "name": "Broodje kipfilet met kaas klein",
-          "price": "11,00",
+          "price": "10,00",
           "description": "",
           "image": "images/broodje-kipfilet-kaas.jpg"
         },
         {
           "id": "kipfilet-kaas-groot",
           "name": "Broodje kipfilet met kaas groot",
-          "price": "14,00",
+          "price": "13,00",
           "description": "",
           "image": "images/broodje-kipfilet-kaas.jpg"
         },
         {
           "id": "sjasliek",
           "name": "Broodje sjasliek",
-          "price": "8,00",
+          "price": "7,50",
           "description": "",
           "image": "images/broodje-sjasliek.jpg"
         },
         {
           "id": "kebab",
           "name": "Broodje kebab",
-          "price": "8,00",
+          "price": "7,50",
           "description": "",
           "image": "images/broodje-kebab.jpg"
         },
@@ -105,7 +105,7 @@
         {
           "id": "falafel",
           "name": "Broodje falafel",
-          "price": "7,00",
+          "price": "6,50",
           "description": "Vegetarisch",
           "image": "images/broodje-falafel.jpg",
           "vegetarian": true
@@ -113,14 +113,14 @@
         {
           "id": "lamsvlees-klein",
           "name": "Broodje lamsvlees klein",
-          "price": "11,00",
+          "price": "10,00",
           "description": "",
           "image": "images/broodje-lamsvlees.jpg"
         },
         {
           "id": "lamsvlees-groot",
           "name": "Broodje lamsvlees groot",
-          "price": "15,00",
+          "price": "14,00",
           "description": "",
           "image": "images/broodje-lamsvlees.jpg"
         },
@@ -148,23 +148,37 @@
         {
           "id": "turkse-pizza",
           "name": "Turkse pizza",
-          "price": "6,50",
+          "price": "5,50",
           "description": "",
           "image": "images/turkse-pizza.jpg"
         },
         {
           "id": "turkse-pizza-kaas",
           "name": "Turkse pizza met kaas",
-          "price": "7,50",
+          "price": "6,50",
           "description": "",
           "image": "images/turkse-pizza-kaas.jpg"
         },
         {
           "id": "turkse-pizza-shoarma",
           "name": "Turkse pizza met shoarma",
-          "price": "10,00",
+          "price": "9,00",
           "description": "",
           "image": "images/turkse-pizza-shoarma.jpg"
+        },
+        {
+          "id": "turkse-pizza-lamsvlees",
+          "name": "Turkse pizza lamsvlees",
+          "price": "11,00",
+          "description": "",
+          "image": "images/turkse-pizza-lamsvlees.jpg"
+        },
+        {
+          "id": "turkse-pizza-met-kip",
+          "name": "Turkse pizza met Kip",
+          "price": "11,00",
+          "description": "",
+          "image": "images/turkse-pizza-met-kip.jpg"
         }
       ]
     },
@@ -175,42 +189,42 @@
         {
           "id": "kapsalon-shoarma-klein",
           "name": "Kapsalon shoarma klein",
-          "price": "10,00",
+          "price": "9,50",
           "description": "Friet, shoarma, gesmolten kaas, salade en saus",
           "image": "images/kapsalon-shoarma.jpg"
         },
         {
           "id": "kapsalon-kip-klein",
           "name": "Kapsalon kip klein",
-          "price": "12,00",
+          "price": "11,00",
           "description": "Friet, kip, gesmolten kaas, salade en saus",
           "image": "images/kapsalon-kip.jpg"
         },
         {
           "id": "kapsalon-lamsvlees-klein",
           "name": "Kapsalon lamsvlees klein",
-          "price": "13,00",
+          "price": "12,00",
           "description": "Friet, lamsvlees, gesmolten kaas, salade en saus",
           "image": "images/kapsalon-lamsvlees.jpg"
         },
         {
           "id": "kapsalon-shoarma-groot",
           "name": "Kapsalon shoarma groot",
-          "price": "13,00",
+          "price": "12,50",
           "description": "Friet, shoarma, gesmolten kaas, salade en saus",
           "image": "images/kapsalon-shoarma.jpg"
         },
         {
           "id": "kapsalon-kip-groot",
           "name": "Kapsalon kip groot",
-          "price": "15,00",
+          "price": "14,00",
           "description": "Friet, kip, gesmolten kaas, salade en saus",
           "image": "images/kapsalon-kip.jpg"
         },
         {
           "id": "kapsalon-lamsvlees-groot",
           "name": "Kapsalon lamsvlees groot",
-          "price": "17,00",
+          "price": "16,00",
           "description": "Friet, lamsvlees, gesmolten kaas, salade en saus",
           "image": "images/kapsalon-lamsvlees.jpg"
         }
@@ -231,7 +245,7 @@
         {
           "id": "kipfilet-schotel",
           "name": "Kipfilet schotel",
-          "price": "19,00",
+          "price": "16,00",
           "description": "Geserveerd met een groene salade, Franse friet en pitabrood",
           "image": "images/kipfilet-schotel.jpg"
         },
@@ -280,7 +294,7 @@
         {
           "id": "spaghetti-amatrice",
           "name": "Spaghetti amatrice",
-          "price": "20,00",
+          "price": "19,00",
           "description": "Spaghetti met tomatensaus en shoarma met groene salade, Franse friet en pitabrood",
           "image": "images/spaghetti-amatrice.jpg"
         },
@@ -301,14 +315,14 @@
         {
           "id": "lamskoteletten-schotel",
           "name": "Lamskoteletten schotel",
-          "price": "21,00",
+          "price": "19,00",
           "description": "Met groene salade, Franse friet en pitabrood",
           "image": "images/lamskoteletten-schotel.jpg"
         },
         {
           "id": "lamsshoarma-schotel",
           "name": "Lamsshoarma schotel",
-          "price": "22,00",
+          "price": "20,00",
           "description": "Met groene salade, Franse friet en pitabrood",
           "image": "images/lamsshoarma-schotel.jpg"
         },
@@ -343,7 +357,7 @@
         {
           "id": "franse-friet",
           "name": "Franse friet",
-          "price": "4,00",
+          "price": "3,50",
           "description": "1 persoon",
           "image": "images/franse-friet.jpg"
         },
@@ -364,7 +378,7 @@
         {
           "id": "extra-vlees",
           "name": "Extra vlees",
-          "price": "9,00",
+          "price": "7,50",
           "description": "",
           "image": "images/extra-vlees.jpg"
         }
@@ -432,98 +446,98 @@
         {
           "id": "coca-cola",
           "name": "Coca-Cola 33cl",
-          "price": "3,00",
+          "price": "2,50",
           "description": "0,33l",
           "image": "images/cocacola.png"
         },
         {
           "id": "coca-cola-zero",
           "name": "Coca-Cola zero sugar 33cl",
-          "price": "3,00",
+          "price": "2,50",
           "description": "0,33l",
           "image": "images/cocacola-zero.png"
         },
         {
           "id": "fanta-orange",
           "name": "Fanta Orange 33cl",
-          "price": "3,00",
+          "price": "2,50",
           "description": "0,33l",
           "image": "images/fanta.png"
         },
         {
           "id": "aa-drink",
           "name": "AA Drink",
-          "price": "3,50",
+          "price": "3,00",
           "description": "0,33l",
           "image": "images/aa-drink.jpeg"
         },
         {
           "id": "sprite",
           "name": "Sprite Regular 33cl",
-          "price": "3,00",
+          "price": "2,50",
           "description": "0,33l",
           "image": "images/sprite.jpg"
         },
         {
           "id": "chocomel",
           "name": "Chocomel",
-          "price": "3,50",
+          "price": "3,00",
           "description": "0,25l",
           "image": "images/chocomel.jpg"
         },
         {
           "id": "cassis",
           "name": "Cassis",
-          "price": "3,50",
+          "price": "3,00",
           "description": "0,33l",
           "image": "images/casis.jpg"
         },
         {
           "id": "mangosap",
           "name": "Mangosap",
-          "price": "3,50",
+          "price": "3,00",
           "description": "0,33l",
           "image": "images/mangosap.jpg"
         },
         {
           "id": "fernandes-cherry",
           "name": "Fernandes Cherry Bouquet 33cl",
-          "price": "3,50",
+          "price": "3,00",
           "description": "0,33l",
           "image": "images/fernandes.png"
         },
         {
           "id": "fernandes-green",
           "name": "Fernandes Green Punch 33cl",
-          "price": "3,50",
+          "price": "3,00",
           "description": "0,33l",
           "image": "images/fernandes-green.png"
         },
         {
           "id": "spa-blauw",
           "name": "Spa blauw",
-          "price": "2,75",
+          "price": "2,50",
           "description": "0,25l",
           "image": "images/spa-blauw.jpg"
         },
         {
           "id": "spa-rood",
           "name": "Spa rood",
-          "price": "2,75",
+          "price": "2,50",
           "description": "0,33l",
           "image": "images/spa-rood.jpeg"
         },
         {
           "id": "dr-pepper",
           "name": "Dr Pepper",
-          "price": "3,00",
+          "price": "2,50",
           "description": "0,33l",
           "image": "images/dr-pepper-regular-355ml.webp"
         },
         {
           "id": "ice-tea",
           "name": "Ice tea",
-          "price": "4,00",
+          "price": "3,00",
           "description": "0,33l",
           "image": "images/ice-tea.avif"
         },
@@ -537,14 +551,14 @@
         {
           "id": "red-bull",
           "name": "Red Bull Energy Drink 25cl",
-          "price": "4,00",
+          "price": "3,50",
           "description": "0,33l",
           "image": "images/red-bull.jpeg"
         },
         {
           "id": "schweppes-bitter",
           "name": "Schweppes bitter lemon",
-          "price": "3,00",
+          "price": "2,50",
           "description": "0,33l",
           "image": "images/schweppes-bitter-lemon-blikjes.jpeg"
         }

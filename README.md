@@ -1,5 +1,7 @@
 # Grillroom Sphinx Utrecht
 
+
+
 Restaurant menu and admin panel for Grillroom Sphinx Utrecht.
 
 <!-- Updated to use GitHub secrets for secure configuration -->
