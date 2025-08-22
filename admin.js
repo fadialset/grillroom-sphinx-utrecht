@@ -457,7 +457,7 @@ class RestaurantAdmin {
         const description = document.getElementById('new-category-description').value.trim();
         const imageFile = document.getElementById('new-category-image').files[0];
 
-        if (!id || !name || !imageFile) {
+        if (!id || !name) {
             this.showMessage('Vul alle verplichte velden in', 'error');
             return;
         }
@@ -468,34 +468,45 @@ class RestaurantAdmin {
             return;
         }
 
-        // Validate file type
-        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-        if (!allowedTypes.includes(imageFile.type)) {
-            this.showMessage('Alleen JPEG en PNG bestanden zijn toegestaan', 'error');
-            return;
-        }
-
-        // Validate file size (5MB limit)
-        if (imageFile.size > 5 * 1024 * 1024) {
-            this.showMessage('Bestand is te groot. Maximum grootte is 5MB', 'error');
-            return;
-        }
-
         try {
-            this.showLoading('Categorie en afbeelding uploaden...');
+            this.showLoading('Categorie aanmaken...');
 
-            // Upload image to GitHub first
-            const imagePath = `images/${id}.${imageFile.name.split('.').pop()}`;
-            await this.uploadImageToGitHub(imagePath, imageFile);
+            let imagePath = null;
 
-            // Create new category with image
+            // Upload image to GitHub if provided
+            if (imageFile) {
+                // Validate file type
+                const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+                if (!allowedTypes.includes(imageFile.type)) {
+                    this.showMessage('Alleen JPEG en PNG bestanden zijn toegestaan', 'error');
+                    return;
+                }
+
+                // Validate file size (5MB limit)
+                if (imageFile.size > 5 * 1024 * 1024) {
+                    this.showMessage('Bestand is te groot. Maximum grootte is 5MB', 'error');
+                    return;
+                }
+
+                this.showLoading('Afbeelding uploaden...');
+                
+                // Upload image to GitHub
+                imagePath = `images/${id}.${imageFile.name.split('.').pop()}`;
+                await this.uploadImageToGitHub(imagePath, imageFile);
+            }
+
+            // Create new category
             const newCategory = {
                 id: id,
                 name: name,
                 description: description || '',
-                image: imagePath,
                 items: []
             };
+
+            // Add image path if image was uploaded
+            if (imagePath) {
+                newCategory.image = imagePath;
+            }
 
             // Add to categories
             this.menuData.categories.push(newCategory);
@@ -511,12 +522,17 @@ class RestaurantAdmin {
             this.markAsChanged();
 
             this.hideLoading();
-            this.showMessage(`Categorie "${name}" met afbeelding toegevoegd`, 'success');
+            
+            if (imagePath) {
+                this.showMessage(`Categorie "${name}" met afbeelding toegevoegd`, 'success');
+            } else {
+                this.showMessage(`Categorie "${name}" toegevoegd`, 'success');
+            }
 
         } catch (error) {
             this.hideLoading();
-            this.showMessage('Fout bij uploaden: ' + error.message, 'error');
-            console.error('Upload error:', error);
+            this.showMessage('Fout bij aanmaken: ' + error.message, 'error');
+            console.error('Category creation error:', error);
         }
     }
 
