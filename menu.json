@@ -568,7 +568,29 @@
       "id": "soeppen",
       "name": "soeppen",
       "description": "",
-      "items": [],
+      "items": [
+        {
+          "id": "kippensoep",
+          "name": "Kippensoep",
+          "price": "6,00",
+          "description": "",
+          "image": "images/kippensoep.jpg"
+        },
+        {
+          "id": "tomatensoep",
+          "name": "Tomatensoep",
+          "price": "6,00",
+          "description": "",
+          "image": "images/tomatensoep.jpg"
+        },
+        {
+          "id": "groene-salade",
+          "name": "Groene Salade",
+          "price": "5,00",
+          "description": "",
+          "image": "images/groene-salade.jpg"
+        }
+      ],
       "image": "images/soeppen.png"
     }
   ]
