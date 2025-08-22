@@ -563,6 +563,13 @@
           "image": "images/schweppes-bitter-lemon-blikjes.jpeg"
         }
       ]
+    },
+    {
+      "id": "soeppen",
+      "name": "soeppen",
+      "description": "",
+      "items": [],
+      "image": "images/soeppen.png"
     }
   ]
 }
