@@ -143,7 +143,21 @@ class MenuApp {
         section.setAttribute('data-category', category.id);
 
         // Add category image if available
-        if (this.categoryImages[category.id]) {
+        if (category.image) {
+            const categoryImage = document.createElement('img');
+            categoryImage.className = 'category-image';
+            categoryImage.src = category.image;
+            categoryImage.alt = category.name;
+            categoryImage.loading = 'lazy';
+            
+            // Handle image load errors
+            categoryImage.onerror = function() {
+                this.style.display = 'none';
+            };
+            
+            section.appendChild(categoryImage);
+        } else if (this.categoryImages[category.id]) {
+            // Fallback to hardcoded images for existing categories
             const categoryImage = document.createElement('img');
             categoryImage.className = 'category-image';
             categoryImage.src = this.categoryImages[category.id];

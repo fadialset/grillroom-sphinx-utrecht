@@ -451,12 +451,13 @@ class RestaurantAdmin {
         }, 5000);
     }
 
-    handleAddCategory() {
+    async handleAddCategory() {
         const id = document.getElementById('new-category-id').value.trim().toLowerCase();
         const name = document.getElementById('new-category-name').value.trim();
         const description = document.getElementById('new-category-description').value.trim();
+        const imageFile = document.getElementById('new-category-image').files[0];
 
-        if (!id || !name) {
+        if (!id || !name || !imageFile) {
             this.showMessage('Vul alle verplichte velden in', 'error');
             return;
         }
@@ -467,28 +468,56 @@ class RestaurantAdmin {
             return;
         }
 
-        // Create new category
-        const newCategory = {
-            id: id,
-            name: name,
-            description: description || '',
-            items: []
-        };
+        // Validate file type
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        if (!allowedTypes.includes(imageFile.type)) {
+            this.showMessage('Alleen JPEG en PNG bestanden zijn toegestaan', 'error');
+            return;
+        }
 
-        // Add to categories
-        this.menuData.categories.push(newCategory);
+        // Validate file size (5MB limit)
+        if (imageFile.size > 5 * 1024 * 1024) {
+            this.showMessage('Bestand is te groot. Maximum grootte is 5MB', 'error');
+            return;
+        }
 
-        // Update the UI
-        this.populateCategories();
-        this.populateMenuTable();
+        try {
+            this.showLoading('Categorie en afbeelding uploaden...');
 
-        // Clear form
-        this.clearAddCategoryForm();
+            // Upload image to GitHub first
+            const imagePath = `images/${id}.${imageFile.name.split('.').pop()}`;
+            await this.uploadImageToGitHub(imagePath, imageFile);
 
-        // Mark as changed
-        this.markAsChanged();
+            // Create new category with image
+            const newCategory = {
+                id: id,
+                name: name,
+                description: description || '',
+                image: imagePath,
+                items: []
+            };
 
-        this.showMessage(`Categorie "${name}" toegevoegd`, 'success');
+            // Add to categories
+            this.menuData.categories.push(newCategory);
+
+            // Update the UI
+            this.populateCategories();
+            this.populateMenuTable();
+
+            // Clear form
+            this.clearAddCategoryForm();
+
+            // Mark as changed
+            this.markAsChanged();
+
+            this.hideLoading();
+            this.showMessage(`Categorie "${name}" met afbeelding toegevoegd`, 'success');
+
+        } catch (error) {
+            this.hideLoading();
+            this.showMessage('Fout bij uploaden: ' + error.message, 'error');
+            console.error('Upload error:', error);
+        }
     }
 
     handleAddItem() {
@@ -565,6 +594,7 @@ class RestaurantAdmin {
         document.getElementById('new-category-id').value = '';
         document.getElementById('new-category-name').value = '';
         document.getElementById('new-category-description').value = '';
+        document.getElementById('new-category-image').value = '';
     }
 
     clearAddItemForm() {
@@ -572,6 +602,58 @@ class RestaurantAdmin {
         document.getElementById('new-item-name').value = '';
         document.getElementById('new-item-price').value = '';
         document.getElementById('new-item-description').value = '';
+    }
+
+    // GitHub API methods for image uploads
+    async uploadImageToGitHub(imagePath, imageFile) {
+        if (!this.githubToken) {
+            throw new Error('GitHub token niet geconfigureerd');
+        }
+
+        try {
+            // Convert image to base64
+            const base64Content = await this.fileToBase64(imageFile);
+            
+            // Upload image to GitHub
+            const apiUrl = `https://api.github.com/repos/${this.repository}/contents/${imagePath}`;
+            
+            const uploadResponse = await fetch(apiUrl, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${this.githubToken}`,
+                    'Accept': 'application/vnd.github.v3+json`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: `Add category image: ${imagePath}`,
+                    content: base64Content,
+                    branch: 'production'
+                })
+            });
+
+            if (!uploadResponse.ok) {
+                const errorData = await uploadResponse.json();
+                throw new Error(`Kan afbeelding niet uploaden: ${uploadResponse.statusText}`);
+            }
+
+            return await uploadResponse.json();
+        } catch (error) {
+            console.error('Image upload error:', error);
+            throw error;
+        }
+    }
+
+    fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                // Remove the data:image/jpeg;base64, prefix
+                const base64 = reader.result.split(',')[1];
+                resolve(base64);
+            };
+            reader.onerror = error => reject(error);
+        });
     }
 }
 

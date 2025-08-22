@@ -465,6 +465,27 @@ button:hover {
     color: var(--primary-gold);
 }
 
+.add-category-section input[type="file"] {
+    padding: 0.5rem;
+    border: 2px dashed var(--primary-gold-light);
+    border-radius: 6px;
+    background: var(--white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-category-section input[type="file"]:hover {
+    border-color: var(--primary-gold);
+    background: var(--warm-cream);
+}
+
+.add-category-section small {
+    color: var(--soft-gray);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
 /* Input Styling for Editable Fields */
 .name-input,
 .price-input {
